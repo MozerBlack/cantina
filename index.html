@@ -1,1 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teste de Variáveis</title>
+</head>
+<body>
+    <h1>Teste de Variáveis com var, let e const</h1>
+
+    <script>
+        // Nome da cantina
+        var nomeCantina = "Cantina da Escola";
+        console.log("Bem-vindo à " + nomeCantina);
+
+        // Quantidade de salgados (esse valor pode mudar)
+        let salgados = 20;
+        console.log("Temos " + salgados + " salgados disponíveis.");
+
+        // Preço fixo de cada salgado
+        const precoSalgado = 5;
+        console.log("Cada salgado custa R$" + precoSalgado);
+
+        // Atualizando a quantidade de salgados
+        salgados = salgados - 5;
+        let totalVendido = 5 * precoSalgado;
+        console.log("Agora restam " + salgados + " salgados.");
+        console.log("A cantina vendeu R$" + totalVendido);
+
+        // Tentando mudar o valor de precoSalgado (isso deve dar erro)
+        precoSalgado = 6; // Isso deve gerar um erro
+
+        // Teste do escopo de var e let
+        if (true) {
+            var testeVar = "Sou var";
+            let testeLet = "Sou let";
+            console.log(testeVar); // Isso vai funcionar
+            console.log(testeLet); // Isso também vai funcionar
+        }
+
+        console.log(testeVar); // Vai funcionar, pois var é global
+        console.log(testeLet); // Vai gerar erro, pois testeLet tem escopo de bloco
+    </script>
+</body>
+</html>
 
