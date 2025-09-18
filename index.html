@@ -1,46 +1,20 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Teste de Variáveis - JavaScript</title>
+    <title>Exercício var, let e const</title>
+
+    <link rel="stylesheet" href="style.css">
+
 </head>
 <body>
-    <h1>Teste de Variáveis - JavaScript</h1>
 
-    <script>
-        // Passo 1: Declarando variáveis
-        var nomeCantina = "Cantina da Escola";
-        console.log("Bem-vindo à " + nomeCantina);  // Bem-vindo à Cantina da Escola
+    <h1>Exercício de JavaScript</h1>
+    <p>Abra o console do navegador (F12) para ver a saída dos testes.</p>
 
-        let salgados = 20;
-        console.log("Temos " + salgados + " salgados disponíveis.");  // Temos 20 salgados disponíveis.
+    <script src="script.js"></script>
 
-        const precoSalgado = 5;
-        console.log("Cada salgado custa R$" + precoSalgado);  // Cada salgado custa R$5
-
-        // Passo 2: Atualizando valores
-        salgados = salgados - 5;
-        let totalVendido = 5 * precoSalgado;
-        console.log("Agora restam " + salgados + " salgados.");  // Agora restam 15 salgados.
-        console.log("A cantina vendeu R$" + totalVendido);  // A cantina vendeu R$25
-
-        // Passo 3: Teste rápido
-
-        // Tentando mudar o valor de uma const (vai gerar erro)
-        // precoSalgado = 6;  // ERRO: Assignment to constant variable.
-
-        // Testando escopo de var e let
-        if (true) {
-            var testeVar = "Sou var";  // var é acessível fora do bloco
-            let testeLet = "Sou let";  // let tem escopo de bloco
-            console.log(testeVar);  // Funciona, imprime "Sou var"
-            console.log(testeLet);  // Funciona, imprime "Sou let"
-        }
-
-        console.log(testeVar);  // Funciona, imprime "Sou var"
-        // console.log(testeLet);  // ERRO: testeLet is not defined
-    </script>
 </body>
 </html>
 
