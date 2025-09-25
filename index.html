@@ -3,12 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Exercício var, let, const</title>
+    <title>Exercício var, let, const - Cantina</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Abra o Console do Navegador (F12)</h1>
-    <p>Todos os resultados e testes do código JavaScript foram enviados para o **Console**.</p>
-    <p>Para ver o código rodando, aperte **F12** ou clique com o botão direito e selecione **Inspecionar > Console**.</p>
+    <div class="container">
+        <h1>Cantina Escolar: Entendendo var, let e const</h1>
+        <p>Acompanhe os resultados na tela e, para os testes de escopo (`Passo 3`), abra o **Console** do navegador (F12).</p>
+
+        <section id="status-cantina">
+            <h2>Status Atual</h2>
+            <p>Cantina: <span id="nome-cantina">...</span></p>
+            <p>Salgados Disponíveis: <span id="salgados-disponiveis">...</span></p>
+            <p>Preço Fixo por Salgado: <span id="preco-salgado">...</span></p>
+            <p>Faturamento Total: <span id="faturamento">R$ 0</span></p>
+        </section>
+
+        <section id="controles">
+            <h2>Ações</h2>
+            <button onclick="passo1Declarar()">Passo 1: Declarar Variáveis</button>
+            <button onclick="passo2Atualizar()" disabled id="btn-passo2">Passo 2: Vender 5 Salgados</button>
+            <button onclick="passo3TestarConst()" disabled id="btn-passo3-const">Passo 3a: Tentar Mudar o Preço (const)</button>
+            <button onclick="passo3TestarEscopo()" disabled id="btn-passo3-escopo">Passo 3b: Testar Escopo (var vs let)</button>
+        </section>
+
+        <div id="mensagem-interacao" class="mensagem">
+            Clique no "Passo 1" para começar!
+        </div>
+    </div>
 
     <script src="script.js"></script>
 </body>

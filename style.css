@@ -1,27 +1,87 @@
 body {
-  font-family: Arial, sans-serif;
-  background-color: #f9f9f9;
-  color: #333;
-  margin: 0;
-  padding: 20px;
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.container {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 90%;
+    max-width: 600px;
 }
 
 h1 {
-  color: #2c3e50;
-  margin-bottom: 10px;
+    color: #0056b3;
+    border-bottom: 2px solid #0056b3;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
 }
 
-#saida {
-  background: #fff;
-  border: 1px solid #ddd;
-  padding: 15px;
-  border-radius: 8px;
-  box-shadow: 0px 2px 5px rgba(0,0,0,0.1);
-  font-size: 16px;
-  margin-top: 15px;
+h2 {
+    color: #4CAF50;
+    margin-top: 25px;
 }
 
-p {
-  font-size: 18px;
-  color: #555;
+section {
+    margin-bottom: 20px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+/* Estilo para as variáveis de status */
+#status-cantina p {
+    font-size: 1.1em;
+    font-weight: bold;
+}
+
+#status-cantina span {
+    color: #d9534f;
+    font-weight: normal;
+    background-color: #eee;
+    padding: 2px 6px;
+    border-radius: 3px;
+    margin-left: 10px;
+}
+
+/* Estilo dos botões */
+button {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 5px 5px 5px 0;
+    transition: background-color 0.3s;
+    font-weight: bold;
+}
+
+button:hover:not(:disabled) {
+    background-color: #0056b3;
+}
+
+button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+}
+
+/* Mensagens de feedback */
+.mensagem {
+    margin-top: 20px;
+    padding: 15px;
+    border-left: 5px solid #4CAF50;
+    background-color: #e6ffe6;
+    color: #333;
+    border-radius: 4px;
+    font-weight: bold;
 }

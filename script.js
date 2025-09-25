@@ -1,79 +1,129 @@
-// =================================================================
-// PASSO 1 – Declarando variáveis
-// =================================================================
+// Variáveis globais para rastrear o estado.
+var nomeCantina;
+let salgados;
+const precoSalgado = 5; // Definido logo aqui, mas inicializado na função.
 
-// var: escopo de função/global, pode mudar. (Usada aqui para o nome da cantina)
-var nomeCantina = "Cantina da Escola";
-console.log("-----------------------------------------");
-console.log("PASSO 1: DECLARAÇÃO");
-console.log("-----------------------------------------");
-console.log("Bem-vindo à " + nomeCantina);
-
-// let: escopo de bloco, pode mudar. Ideal para contadores.
-let salgados = 20;
-console.log("Temos " + salgados + " salgados disponíveis.");
-
-// const: escopo de bloco, NÃO PODE MUDAR. Ideal para valores fixos.
-const precoSalgado = 5;
-console.log("Cada salgado custa R$" + precoSalgado);
-
-// =================================================================
-// PASSO 2 – Atualizando valores (Simulando a venda de 5 salgados)
-// =================================================================
-
-// Atualiza o número de salgados (let permite a alteração)
-salgados = salgados - 5; 
-
-// Calcula a receita usando o valor constante
-let totalVendido = 5 * precoSalgado; 
-
-console.log("\n-----------------------------------------");
-console.log("PASSO 2: ATUALIZAÇÃO");
-console.log("-----------------------------------------");
-console.log("Venda de 5 salgados realizada.");
-console.log("Agora restam " + salgados + " salgados."); // Resultado: 15
-console.log("A cantina vendeu R$" + totalVendido);      // Resultado: R$25
-
-// =================================================================
-// PASSO 3 – Teste rápido (Testando const e escopo)
-// =================================================================
-
-console.log("\n-----------------------------------------");
-console.log("PASSO 3: TESTES DE REGRAS");
-console.log("-----------------------------------------");
-
-// -----------------------------------------------------------------
-// Teste 1: O que acontece se tentar mudar o valor de precoSalgado?
-// -----------------------------------------------------------------
-console.log("TESTE 1: Tentando mudar o valor de precoSalgado...");
-/*
-// DESCOMENTE AS DUAS LINHAS ABAIXO NO SEU AMBIENTE DE TESTE PARA VER O ERRO!
-precoSalgado = 6; 
-console.log("Preço alterado para R$" + precoSalgado); 
-// Resultado: TypeError: Assignment to constant variable.
-*/
-console.log("O código dá ERRO de tipo (TypeError), pois 'const' não permite reatribuição.");
-
-
-// -----------------------------------------------------------------
-// Teste 2: O que acontece com 'var' e 'let' dentro de um bloco {}?
-// -----------------------------------------------------------------
-console.log("\nTESTE 2: Testando escopo de 'var' e 'let' em um bloco 'if':");
-
-if (true) {
-    var testeVar = "Sou var dentro do if";  // var tem escopo de função/global (Vaza)
-    let testeLet = "Sou let dentro do if";  // let tem escopo de bloco (Fica restrito)
-
-    console.log("DENTRO do bloco: testeVar = " + testeVar); // FUNCIONA
-    console.log("DENTRO do bloco: testeLet = " + testeLet); // FUNCIONA
+function atualizarInterface() {
+    // Atualiza os elementos HTML com os valores atuais das variáveis
+    document.getElementById('nome-cantina').textContent = nomeCantina || "Não Declarado";
+    document.getElementById('salgados-disponiveis').textContent = salgados !== undefined ? salgados : "Não Declarado";
+    document.getElementById('preco-salgado').textContent = "R$ " + precoSalgado;
 }
 
-console.log("\nFORA do bloco:");
-console.log("Acesso a 'var': " + testeVar); // FUNCIONA: var "vaza" para fora do bloco.
+function passo1Declarar() {
+    // PASSO 1 – Declarando variáveis
+    
+    // var: escopo de função/global, pode mudar.
+    nomeCantina = "Cantina da Escola"; 
+    
+    // let: escopo de bloco, pode mudar (ideal para o estoque).
+    salgados = 20;
 
-/*
-// DESCOMENTE A LINHA ABAIXO NO SEU AMBIENTE DE TESTE PARA VER O ERRO!
-console.log("Acesso a 'let': " + testeLet); 
-// Resultado: ReferenceError: testeLet is not defined
-*/
-console.log("Acesso a 'let': O código dá ERRO de referência (ReferenceError), pois 'let' só existe DENTRO do bloco 'if'.");
+    // const: escopo de bloco, NÃO PODE MUDAR (preço fixo).
+    // precoSalgado já está definido fora da função.
+
+    atualizarInterface();
+    document.getElementById('faturamento').textContent = "R$ 0";
+    document.getElementById('mensagem-interacao').textContent = 
+        `✅ Passo 1 Concluído! Variáveis declaradas. (var: ${nomeCantina}, let: ${salgados}, const: R$ ${precoSalgado})`;
+    
+    // Habilita o próximo botão
+    document.getElementById('btn-passo2').disabled = false;
+    document.getElementById('btn-passo3-const').disabled = false;
+    document.getElementById('btn-passo3-escopo').disabled = false;
+    console.log("--- PASSO 1: Variáveis Declaradas ---");
+    console.log("var nomeCantina:", nomeCantina);
+    console.log("let salgados:", salgados);
+    console.log("const precoSalgado:", precoSalgado);
+}
+
+function passo2Atualizar() {
+    // Verifica se as variáveis foram inicializadas
+    if (salgados === undefined) {
+        document.getElementById('mensagem-interacao').textContent = "⚠️ Por favor, execute o 'Passo 1' primeiro.";
+        return;
+    }
+    
+    const vendidos = 5;
+    
+    // PASSO 2 – Atualizando valores
+    // let permite a atualização.
+    salgados = salgados - vendidos;
+    
+    // Calcula o total usando a constante.
+    let totalVendido = vendidos * precoSalgado; 
+
+    atualizarInterface();
+    document.getElementById('faturamento').textContent = "R$ " + totalVendido;
+    document.getElementById('mensagem-interacao').textContent = 
+        `✅ Passo 2 Concluído! ${vendidos} salgados vendidos. Estoque restante: ${salgados}. Faturamento: R$ ${totalVendido}.`;
+    
+    console.log("--- PASSO 2: Venda Realizada ---");
+    console.log("Novo estoque (let salgados):", salgados);
+    console.log("Faturamento (let totalVendido): R$", totalVendido);
+}
+
+function passo3TestarConst() {
+    // PASSO 3a – Teste rápido: Tentando mudar o valor de precoSalgado (const)
+    
+    let mensagem;
+    
+    try {
+        // Esta linha geraria um erro se não estivesse em um bloco try-catch.
+        // precoSalgado = 6; 
+        mensagem = "❌ ERRO: 'const' não pode ser reatribuído! Se a linha estivesse ativa, daria 'TypeError'. O preço permanece R$ 5.";
+        console.error("--- PASSO 3a: Teste de const ---");
+        console.error("Tentativa de mudar precoSalgado falhou. Tipo de erro: TypeError: Assignment to constant variable.");
+    } catch (e) {
+        // Se o erro acontecesse, seria capturado aqui.
+        mensagem = `❌ ERRO: ${e.name}! O valor de 'const' não pode ser alterado. Preço permanece R$ ${precoSalgado}.`;
+    }
+    
+    document.getElementById('mensagem-interacao').textContent = mensagem;
+    atualizarInterface();
+}
+
+function passo3TestarEscopo() {
+    // PASSO 3b – Teste rápido: Escopo de var vs let
+    
+    let resultadoVar = "";
+    let resultadoLet = "";
+
+    console.log("--- PASSO 3b: Teste de Escopo (var vs let) ---");
+    console.log("-----------------------------------------------");
+
+    if (true) {
+        var testeVar = "Sou var dentro do if";  
+        let testeLet = "Sou let dentro do if";  
+        
+        console.log("1. DENTRO DO BLOCO:");
+        console.log("   testeVar (var):", testeVar); // Funciona
+        console.log("   testeLet (let):", testeLet); // Funciona
+        resultadoVar = "var funciona DENTRO";
+        resultadoLet = "let funciona DENTRO";
+    }
+    
+    console.log("\n2. FORA DO BLOCO:");
+    
+    // Teste de VAR:
+    console.log("   testeVar (var):", testeVar); // FUNCIONA! var "vaza" para fora.
+    resultadoVar += " e VAZA para FORA.";
+
+    // Teste de LET:
+    try {
+        // Descomente a linha abaixo no console para ver o erro.
+        // console.log("   testeLet (let):", testeLet); 
+        console.error("   testeLet (let): ReferenceError. 'let' é restrito ao bloco e não pode ser acessado aqui.");
+        resultadoLet += " e GERA ERRO FORA (ReferenceError).";
+    } catch (e) {
+        resultadoLet += " e GERA ERRO FORA (ReferenceError).";
+    }
+
+    document.getElementById('mensagem-interacao').innerHTML = 
+        `✅ Passo 3b Concluído! Veja o **Console (F12)** para detalhes:<br>
+        - **var**: ${resultadoVar}<br>
+        - **let**: ${resultadoLet}`;
+}
+
+// Inicializa a interface
+atualizarInterface();
