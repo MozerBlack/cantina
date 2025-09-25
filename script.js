@@ -1,4 +1,3 @@
-// Função para mostrar mensagens na tela
 function mostrar(msg) {
   const saida = document.getElementById("saida");
   const div = document.createElement("div");
@@ -7,15 +6,58 @@ function mostrar(msg) {
   saida.appendChild(div);
 }
 
-// Resultados fixos da atividade
-mostrar("Bem-vindo à Cantina da Escola");
-mostrar("Temos 20 salgados disponíveis.");
-mostrar("Cada salgado custa R$5");
-mostrar("Agora restam 15 salgados.");
-mostrar("A cantina vendeu R$25");
+// Passo 1
+var nomeCantina = "Cantina da Escola";
+mostrar("Bem-vindo à " + nomeCantina);
+
+let salgados = 20;
+mostrar("Temos " + salgados + " salgados disponíveis.");
+
+const precoSalgado = 5;
+mostrar("Cada salgado custa R$" + precoSalgado);
+
+function mostrar(msg) {
+  const saida = document.getElementById("saida");
+  const div = document.createElement("div");
+  div.className = "mensagem";
+  div.textContent = msg;
+  saida.appendChild(div);
+}
+
+// Valores iniciais
+let salgados = 20;
+const precoSalgado = 5;
+
+// Atualização
+salgados = salgados - 5;
+let totalVendido = 5 * precoSalgado;
+
+mostrar("Agora restam " + salgados + " salgados.");
+mostrar("A cantina vendeu R$" + totalVendido);
+
+function mostrar(msg) {
+  const saida = document.getElementById("saida");
+  const div = document.createElement("div");
+  div.className = "mensagem";
+  div.textContent = msg;
+  saida.appendChild(div);
+}
+
+// Teste com const
 mostrar("🔹 Testando const: não é possível alterar o valor de precoSalgado.");
 mostrar("Se tentarmos: precoSalgado = 6; → dá erro no código.");
-mostrar("Dentro do bloco: Sou var (visível fora do bloco)");
-mostrar("Dentro do bloco: Sou let (apenas dentro do bloco)");
-mostrar("Fora do bloco: Sou var (visível fora do bloco)");
-mostrar("Fora do bloco: ERRO → 'testeLet' não está definido.");
+
+// Teste var e let
+if (true) {
+  var testeVar = "Sou var (visível fora do bloco)";
+  let testeLet = "Sou let (apenas dentro do bloco)";
+  mostrar("Dentro do bloco: " + testeVar);
+  mostrar("Dentro do bloco: " + testeLet);
+}
+
+mostrar("Fora do bloco: " + testeVar);
+try {
+  mostrar("Fora do bloco: " + testeLet);
+} catch (e) {
+  mostrar("Fora do bloco: ERRO → 'testeLet' não está definido.");
+}
