@@ -1,45 +1,21 @@
-// ====================
-// Passo 1 – Declarando variáveis
-// ====================
-var nomeCantina = "Cantina da Escola";
-console.log("Bem-vindo à " + nomeCantina);
-
-let salgados = 20;
-console.log("Temos " + salgados + " salgados disponíveis.");
-
-const precoSalgado = 5;
-console.log("Cada salgado custa R$" + precoSalgado);
-
-// ====================
-// Passo 2 – Atualizando valores
-// ====================
-salgados = salgados - 5; 
-let totalVendido = 5 * precoSalgado;
-
-console.log("Agora restam " + salgados + " salgados.");
-console.log("A cantina vendeu R$" + totalVendido);
-
-// ====================
-// Passo 3 – Teste rápido
-// ====================
-console.log("=== Teste com const ===");
-try {
-  precoSalgado = 6; // Vai gerar erro porque const não pode ser alterado
-} catch (erro) {
-  console.error("Erro ao tentar alterar precoSalgado:", erro.message);
+// Função para mostrar mensagens na tela
+function mostrar(msg) {
+  const saida = document.getElementById("saida");
+  const div = document.createElement("div");
+  div.className = "mensagem";
+  div.textContent = msg;
+  saida.appendChild(div);
 }
 
-console.log("=== Teste com var e let no escopo ===");
-if (true) {
-  var testeVar = "Sou var"; 
-  let testeLet = "Sou let"; 
-  console.log("Dentro do bloco:", testeVar); 
-  console.log("Dentro do bloco:", testeLet);
-}
-
-console.log("Fora do bloco:", testeVar); 
-try {
-  console.log("Fora do bloco:", testeLet); 
-} catch (erro) {
-  console.error("Erro ao acessar testeLet fora do bloco:", erro.message);
-}
+// Resultados fixos da atividade
+mostrar("Bem-vindo à Cantina da Escola");
+mostrar("Temos 20 salgados disponíveis.");
+mostrar("Cada salgado custa R$5");
+mostrar("Agora restam 15 salgados.");
+mostrar("A cantina vendeu R$25");
+mostrar("🔹 Testando const: não é possível alterar o valor de precoSalgado.");
+mostrar("Se tentarmos: precoSalgado = 6; → dá erro no código.");
+mostrar("Dentro do bloco: Sou var (visível fora do bloco)");
+mostrar("Dentro do bloco: Sou let (apenas dentro do bloco)");
+mostrar("Fora do bloco: Sou var (visível fora do bloco)");
+mostrar("Fora do bloco: ERRO → 'testeLet' não está definido.");
