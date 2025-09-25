@@ -35,3 +35,130 @@
     <script src="script.js"></script>
 </body>
 </html>
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Explicação do Projeto Cantina</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container explicacao-container">
+        <h1>Explicação Detalhada do Projeto Cantina</h1>
+        <p>Este projeto demonstra de forma interativa as diferenças entre **<code>var</code>**, **<code>let</code>** e **<code>const</code>** em JavaScript, que definem como as variáveis são criadas, se podem ser alteradas e onde são acessíveis (escopo).</p>
+        
+        <a href="index.html" class="button-link">
+            <button class="voltar-btn">← Voltar à Cantina</button>
+        </a>
+
+        <h2>Estrutura do Projeto</h2>
+        <p>O site é composto por três arquivos principais:</p>
+        <ul>
+            <li>**<code>index.html</code>:** A estrutura e a interface com o usuário.</li>
+            <li>**<code>style.css</code>:** A aparência visual (cores, botões e layout).</li>
+            <li>**<code>script.js</code>:** A lógica que testa os comandos `var`, `let` e `const`.</li>
+        </ul>
+
+        <h2>Explicação Linha por Linha do <code>script.js</code></h2>
+        <p>O código está organizado em funções acionadas pelos botões:</p>
+
+        <h3>Variáveis Globais e Funções de Controle</h3>
+        <div class="code-block">
+// Variáveis globais para rastrear o estado.
+var nomeCantina; // var: Escopo de função/global, pode causar vazamento (teste no Passo 3b).
+let salgados;    // let: Escopo de bloco, valor mutável (muda no Passo 2).
+const precoSalgado = 5; // const: Escopo de bloco, valor IMUTÁVEL (teste no Passo 3a).
+
+function atualizarInterface() {
+    // Conecta os valores JS às caixas (<span>) do HTML para exibição.
+    document.getElementById('nome-cantina').textContent = nomeCantina || "Não Declarado";
+    document.getElementById('salgados-disponiveis').textContent = salgados !== undefined ? salgados : "Não Declarado";
+    document.getElementById('preco-salgado').textContent = "R$ " + precoSalgado;
+}
+        </div>
+        
+        <h3><code>passo1Declarar()</code>: Declaração</h3>
+        <p>Define os valores iniciais e **habilita** os botões.</p>
+        <div class="code-block">
+function passo1Declarar() {
+    // Inicializa var e let
+    nomeCantina = "Cantina da Escola"; 
+    salgados = 20;
+
+    atualizarInterface(); 
+    // Habilita os próximos botões para continuar a interação.
+    document.getElementById('btn-passo2').disabled = false;
+    document.getElementById('btn-passo3-const').disabled = false;
+    document.getElementById('btn-passo3-escopo').disabled = false;
+}
+        </div>
+        
+        <h3><code>passo2Atualizar()</code>: Mutabilidade de <code>let</code></h3>
+        <p>Demonstra que variáveis com **<code>let</code> podem ser alteradas** e que **<code>const</code> é usada** para cálculos fixos.</p>
+        <div class="code-block">
+function passo2Atualizar() {
+    const vendidos = 5; 
+    
+    // ATUALIZAÇÃO (let): O estoque muda de 20 para 15.
+    salgados = salgados - vendidos;
+    
+    // CÁLCULO: Usa a const 'precoSalgado' (R$ 5) no cálculo.
+    let totalVendido = vendidos * precoSalgado; 
+
+    atualizarInterface();
+    document.getElementById('faturamento').textContent = "R$ " + totalVendido;
+}
+        </div>
+
+        <h3><code>passo3TestarConst()</code>: Imutabilidade de <code>const</code></h3>
+        <p>Mostra que o JavaScript impede a alteração de um valor `const` (gerando um `TypeError`).</p>
+        <div class="code-block">
+function passo3TestarConst() {
+    let mensagem;
+    
+    try {
+        // Se a linha 'precoSalgado = 6;' estivesse ativa, o JavaScript geraria um 'TypeError'.
+        mensagem = "❌ ERRO: 'const' não pode ser reatribuído! (TypeError esperado)";
+    } catch (e) {
+        // O erro seria capturado aqui.
+    }
+    
+    document.getElementById('mensagem-interacao').textContent = mensagem;
+    console.error("Tipo de erro esperado: TypeError: Assignment to constant variable.");
+}
+        </div>
+        
+        <h3><code>passo3TestarEscopo()</code>: Escopo de <code>var</code> vs <code>let</code></h3>
+        <p>Demonstra a diferença de acesso fora de um bloco de código (ex: `if`).</p>
+        <div class="code-block">
+function passo3TestarEscopo() {
+    
+    if (true) {
+        var testeVar = "Sou var dentro do if";  // var: VAZA para fora.
+        let testeLet = "Sou let dentro do if";  // let: RESTRITO ao bloco.
+    }
+    
+    console.log("2. FORA DO BLOCO:");
+    
+    // Teste de VAR:
+    console.log("   testeVar (var):", testeVar); // FUNCIONA! var não respeita o bloco.
+
+    // Teste de LET:
+    try {
+        // console.log("   testeLet (let):", testeLet); // Linha que causaria 'ReferenceError'
+        console.error("   testeLet (let): ReferenceError. 'let' é restrito ao bloco.");
+    } catch (e) {
+        // O erro é capturado.
+    }
+}
+        </div>
+        
+        <a href="index.html" class="button-link">
+            <button class="voltar-btn">← Voltar à Cantina</button>
+        </a>
+        <br><br>
+    </div>
+</body>
+</html>

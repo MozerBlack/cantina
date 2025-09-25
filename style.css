@@ -18,6 +18,10 @@ body {
     width: 90%;
     max-width: 600px;
 }
+/* Aumenta o tamanho máximo do container para a página de explicação */
+.explicacao-container {
+    max-width: 850px; 
+}
 
 h1 {
     color: #0056b3;
@@ -38,7 +42,6 @@ section {
     border-radius: 4px;
 }
 
-/* Estilo para as variáveis de status */
 #status-cantina p {
     font-size: 1.1em;
     font-weight: bold;
@@ -53,7 +56,7 @@ section {
     margin-left: 10px;
 }
 
-/* Estilo dos botões */
+/* Estilo dos botões padrões */
 button {
     background-color: #007bff;
     color: white;
@@ -66,6 +69,22 @@ button {
     font-weight: bold;
 }
 
+/* Estilo para o botão de explicação e voltar */
+.explicacao-btn, .voltar-btn {
+    background-color: #5bc0de; /* Azul mais claro */
+    margin-top: 15px;
+}
+
+.explicacao-btn:hover, .voltar-btn:hover {
+    background-color: #31b0d5;
+}
+
+/* Garante que o link se comporte como botão */
+.button-link {
+    text-decoration: none;
+}
+
+
 button:hover:not(:disabled) {
     background-color: #0056b3;
 }
@@ -75,7 +94,6 @@ button:disabled {
     cursor: not-allowed;
 }
 
-/* Mensagens de feedback */
 .mensagem {
     margin-top: 20px;
     padding: 15px;
@@ -84,4 +102,15 @@ button:disabled {
     color: #333;
     border-radius: 4px;
     font-weight: bold;
+}
+
+/* Estilo específico para blocos de código na página de explicação */
+.code-block {
+    background-color: #eee;
+    border-left: 5px solid #007bff;
+    padding: 10px;
+    margin: 15px 0;
+    white-space: pre-wrap;
+    font-family: monospace;
+    overflow-x: auto;
 }
