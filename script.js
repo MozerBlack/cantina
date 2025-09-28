@@ -1,7 +1,7 @@
 // Variáveis globais para rastrear o estado.
 var nomeCantina;
 let salgados;
-const precoSalgado = 5; 
+const precoSalgado = 5; // Definido logo aqui, mas inicializado na função.
 
 function atualizarInterface() {
     // Atualiza os elementos HTML com os valores atuais das variáveis
@@ -13,20 +13,21 @@ function atualizarInterface() {
 function passo1Declarar() {
     // PASSO 1 – Declarando variáveis
     
-    // var: escopo de função/global.
+    // var: escopo de função/global, pode mudar.
     nomeCantina = "Cantina da Escola"; 
     
-    // let: escopo de bloco, mutável (ideal para o estoque).
+    // let: escopo de bloco, pode mudar (ideal para o estoque).
     salgados = 20;
 
-    // const: escopo de bloco, IMUTÁVEL (preço fixo).
+    // const: escopo de bloco, NÃO PODE MUDAR (preço fixo).
+    // precoSalgado já está definido fora da função.
 
     atualizarInterface();
     document.getElementById('faturamento').textContent = "R$ 0";
     document.getElementById('mensagem-interacao').textContent = 
         `✅ Passo 1 Concluído! Variáveis declaradas. (var: ${nomeCantina}, let: ${salgados}, const: R$ ${precoSalgado})`;
     
-    // Habilita os botões de ação
+    // Habilita o próximo botão
     document.getElementById('btn-passo2').disabled = false;
     document.getElementById('btn-passo3-const').disabled = false;
     document.getElementById('btn-passo3-escopo').disabled = false;
@@ -46,7 +47,7 @@ function passo2Atualizar() {
     const vendidos = 5;
     
     // PASSO 2 – Atualizando valores
-    // let permite a atualização do valor.
+    // let permite a atualização.
     salgados = salgados - vendidos;
     
     // Calcula o total usando a constante.
@@ -68,12 +69,13 @@ function passo3TestarConst() {
     let mensagem;
     
     try {
-        // A linha 'precoSalgado = 6;' está comentada. Se fosse ativada, geraria um TypeError.
+        // Esta linha geraria um erro se não estivesse em um bloco try-catch.
         // precoSalgado = 6; 
         mensagem = "❌ ERRO: 'const' não pode ser reatribuído! Se a linha estivesse ativa, daria 'TypeError'. O preço permanece R$ 5.";
         console.error("--- PASSO 3a: Teste de const ---");
         console.error("Tentativa de mudar precoSalgado falhou. Tipo de erro: TypeError: Assignment to constant variable.");
     } catch (e) {
+        // Se o erro acontecesse, seria capturado aqui.
         mensagem = `❌ ERRO: ${e.name}! O valor de 'const' não pode ser alterado. Preço permanece R$ ${precoSalgado}.`;
     }
     
@@ -104,7 +106,7 @@ function passo3TestarEscopo() {
     console.log("\n2. FORA DO BLOCO:");
     
     // Teste de VAR:
-    console.log("   testeVar (var):", testeVar); // FUNCIONA! var "vaza" para fora do bloco.
+    console.log("   testeVar (var):", testeVar); // FUNCIONA! var "vaza" para fora.
     resultadoVar += " e VAZA para FORA.";
 
     // Teste de LET:
@@ -123,5 +125,5 @@ function passo3TestarEscopo() {
         - **let**: ${resultadoLet}`;
 }
 
-// Inicializa a interface ao carregar a página
+// Inicializa a interface
 atualizarInterface();
